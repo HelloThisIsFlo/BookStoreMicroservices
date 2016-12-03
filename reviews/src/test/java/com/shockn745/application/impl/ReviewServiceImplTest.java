@@ -68,7 +68,7 @@ public class ReviewServiceImplTest {
         Review fromRepo = afterNewReview.get(0);
         assertEquals(bookWithNewReview, fromRepo.getBookId());
         assertEquals("Frank", fromRepo.getReviewer().username());
-        assertEquals(44, fromRepo.getRating());
+        assertEquals(44, fromRepo.getRating().value());
     }
 
     private void populateRepoWithFakeReviews() {

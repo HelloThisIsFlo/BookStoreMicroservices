@@ -33,8 +33,8 @@ public class Review implements Entity<Review> {
         return bookId;
     }
 
-    public int getRating() {// TODO: 12/3/2016 change to Rating type
-        return rating.value();
+    public Rating getRating() {
+        return rating;
     }
 
     public void updateRating(Rating rating) {
