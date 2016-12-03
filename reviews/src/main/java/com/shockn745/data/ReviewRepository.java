@@ -2,8 +2,6 @@ package com.shockn745.data;
 
 import com.shockn745.model.Review;
 
-import java.util.List;
-
 /**
  * @author Kempenich Florian
  */
@@ -15,6 +13,6 @@ public interface ReviewRepository {
 
     void remove(Review item);
 
-    List<Review> query(Specification specification);
+//    List<Review> query(Specification specification);
 
 }
