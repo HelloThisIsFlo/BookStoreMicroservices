@@ -2,6 +2,8 @@ package com.shockn745.model;
 
 import com.shockn745.domain.ddd.Entity;
 
+import java.util.Objects;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -12,10 +14,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class Review implements Entity<Review> {
 
+    private ReviewId id;
     private Rating rating;
     private User reviewer;
 
-    public Review(Rating rating, User reviewer) {
+    public Review(ReviewId id, Rating rating, User reviewer) {
+        this.id = checkNotNull(id);
         setRating(rating);
         setReviewer(reviewer);
     }
@@ -24,11 +28,6 @@ public class Review implements Entity<Review> {
         return rating.value();
     }
 
-    /**
-     * Rating must be 0 <= rating <= 100
-     *
-     * @param rating must be 0 <= rating <= 100
-     */
     public void setRating(Rating rating) {
         this.rating = checkNotNull(rating);
     }
@@ -42,7 +41,20 @@ public class Review implements Entity<Review> {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return sameIdentityAs(review);
+    }
+
+    @Override
     public boolean sameIdentityAs(Review other) {
-        return false;
+        return other.id.sameValueAs(id);
     }
 }

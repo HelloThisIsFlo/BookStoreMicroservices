@@ -7,6 +7,8 @@ import java.util.Objects;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
+ * Identifies a review
+ *
  * @author Kempenich Florian
  */
 public class ReviewId implements ValueObject<ReviewId> {
