@@ -1,4 +1,4 @@
-package com.shockn745.model;
+package com.shockn745.domain.model;
 
 import com.shockn745.domain.ddd.ValueObject;
 

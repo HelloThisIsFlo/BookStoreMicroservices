@@ -1,4 +1,4 @@
-package com.shockn745.model;
+package com.shockn745.domain.model;
 
 import com.google.common.testing.EqualsTester;
 import org.junit.Before;
@@ -15,6 +15,14 @@ public class ReviewTest {
     private BookId validBookId;
     private User validUser;
     private Rating validRating;
+
+    /*
+     * Note to self:
+     * Later when (if) implementing a review content: Possible to add without adding to constructor.
+     * Just initialize with default value (NullObject pattern).
+     *
+     * Makes sense: a review doesn't necessarily have a text content.
+     */
 
     @Before
     public void setUp() throws Exception {
@@ -48,15 +56,9 @@ public class ReviewTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void setUserNull() throws Exception {
-        Review review = new Review(validId, validBookId, validRating, validUser);
-        review.setReviewer(null);
-    }
-
-    @Test(expected = NullPointerException.class)
     public void setRatingNull() throws Exception {
         Review review = new Review(validId, validBookId, validRating, validUser);
-        review.setRating(null);
+        review.updateRating(null);
     }
 
     @Test

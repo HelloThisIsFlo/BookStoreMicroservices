@@ -1,4 +1,4 @@
-package com.shockn745.model;
+package com.shockn745.domain.model;
 
 import com.shockn745.domain.ddd.Entity;
 
@@ -8,7 +8,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Represents a book review.
- * The rating is in percentage, must be 0 <= rating <= 100
  *
  * @author Kempenich Florian
  */
@@ -22,24 +21,20 @@ public class Review implements Entity<Review> {
     public Review(ReviewId id, BookId bookId, Rating rating, User reviewer) {
         this.id = checkNotNull(id);
         this.bookId = checkNotNull(bookId);
-        setRating(rating);
-        setReviewer(reviewer);
+        updateRating(rating);
+        this.reviewer = checkNotNull(reviewer);
     }
 
     public int getRating() {
         return rating.value();
     }
 
-    public void setRating(Rating rating) {
+    public void updateRating(Rating rating) {
         this.rating = checkNotNull(rating);
     }
 
     public User getReviewer() {
         return reviewer;
-    }
-
-    public void setReviewer(User reviewer) {
-        this.reviewer = checkNotNull(reviewer);
     }
 
     @Override

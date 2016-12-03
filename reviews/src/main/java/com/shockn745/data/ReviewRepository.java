@@ -1,18 +1,29 @@
 package com.shockn745.data;
 
-import com.shockn745.model.Review;
+import com.shockn745.domain.model.BookId;
+import com.shockn745.domain.model.Review;
+import com.shockn745.domain.model.ReviewId;
+
+import java.util.List;
 
 /**
  * @author Kempenich Florian
  */
 public interface ReviewRepository {
 
-    void add(Review item);
 
-    void update(Review item);
+    /*
+     * Note to self:
+     * For now only put operations needed. KISS
+     *
+     * Later when implementing new operations => See if a annoying to do or not (shouldn't be)
+     */
 
-    void remove(Review item);
+    void save(Review toSave);
 
-//    List<Review> query(Specification specification);
+    void delete(Review toDelete);
 
+    List<Review> findByBookid(BookId bookId);
+
+    ReviewId generateNextId();
 }
