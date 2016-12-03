@@ -15,11 +15,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Review implements Entity<Review> {
 
     private ReviewId id;
+    private BookId bookId;
     private Rating rating;
     private User reviewer;
 
-    public Review(ReviewId id, Rating rating, User reviewer) {
+    public Review(ReviewId id, BookId bookId, Rating rating, User reviewer) {
         this.id = checkNotNull(id);
+        this.bookId = checkNotNull(bookId);
         setRating(rating);
         setReviewer(reviewer);
     }

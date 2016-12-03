@@ -4,45 +4,59 @@ import com.google.common.testing.EqualsTester;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.fail;
+
 /**
  * @author Kempenich Florian
  */
 public class ReviewTest {
 
+    private ReviewId validId;
+    private BookId validBookId;
     private User validUser;
     private Rating validRating;
 
     @Before
     public void setUp() throws Exception {
+        validId = new ReviewId("abc");
+        validBookId = new BookId("book-id");
         validUser = new User("Patrick");
         validRating = new Rating(3);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void userNull() throws Exception {
-        new Review(new ReviewId("abc"), validRating, null);
+    @Test
+    public void testCreateInstance() throws Exception {
+        assertValid(validId, validBookId, validRating, validUser);
+
+        assertInvalid(null, validBookId, validRating, validUser);
+        assertInvalid(validId, null, validRating, validUser);
+        assertInvalid(validId, validBookId, null, validUser);
+        assertInvalid(validId, validBookId, validRating, null);
+    }
+
+    private void assertValid(ReviewId reviewId, BookId bookId, Rating rating, User user) {
+        new Review(reviewId, bookId, rating, user);
+    }
+
+    private void assertInvalid(ReviewId reviewId, BookId bookId, Rating rating, User user) {
+        try {
+            new Review(reviewId, bookId, rating, user);
+            fail("Should throw exception");
+        } catch (NullPointerException e) {
+            // expected
+        }
     }
 
     @Test(expected = NullPointerException.class)
     public void setUserNull() throws Exception {
-        Review review = new Review(new ReviewId("abc"), validRating, validUser);
+        Review review = new Review(validId, validBookId, validRating, validUser);
         review.setReviewer(null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ratingNull() throws Exception {
-        new Review(new ReviewId("abc"), null, validUser);
-    }
-
-    @Test(expected = NullPointerException.class)
     public void setRatingNull() throws Exception {
-        Review review = new Review(new ReviewId("abc"), validRating, validUser);
+        Review review = new Review(validId, validBookId, validRating, validUser);
         review.setRating(null);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void idNull() throws Exception {
-        new Review(null, validRating, validUser);
     }
 
     @Test
@@ -57,9 +71,9 @@ public class ReviewTest {
         ReviewId id3 = new ReviewId("third-id");
 
         new EqualsTester()
-                .addEqualityGroup(new Review(id1, validRating, validUser), new Review(id1, validRating, validUser))
-                .addEqualityGroup(new Review(id2, validRating, validUser), new Review(id2, validRating, validUser))
-                .addEqualityGroup(new Review(id3, validRating2, validUser2), new Review(id3, validRating, validUser))
+                .addEqualityGroup(new Review(id1, new BookId("book-id"), validRating, validUser), new Review(id1, new BookId("book-id"), validRating, validUser))
+                .addEqualityGroup(new Review(id2, new BookId("book-id"), validRating, validUser), new Review(id2, new BookId("book-id"), validRating, validUser))
+                .addEqualityGroup(new Review(id3, new BookId("book-id"), validRating2, validUser2), new Review(id3, new BookId("book-id"), validRating, validUser))
                 .testEquals();
     }
 }
