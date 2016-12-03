@@ -1,26 +1,44 @@
 package com.shockn745.model;
 
+import com.shockn745.domain.ddd.ValueObject;
+
+import java.util.Objects;
+
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * @author Kempenich Florian
  */
-public class User {
+public class User implements ValueObject<User> {
 
     private String username;
 
     public User(String username) {
-        setUsername(username);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
         checkNotNull(username);
         checkArgument(!username.isEmpty());
         this.username = username;
+    }
+
+    public String username() {
+        return username;
+    }
+
+    @Override
+    public boolean sameValueAs(User other) {
+        return other.username().equals(username);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return sameValueAs(user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
     }
 }

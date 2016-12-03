@@ -1,5 +1,7 @@
 package com.shockn745.model;
 
+import com.shockn745.domain.ddd.Entity;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -8,7 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @author Kempenich Florian
  */
-public class Review {
+public class Review implements Entity<Review> {
 
     private Rating rating;
     private User reviewer;
@@ -38,5 +40,10 @@ public class Review {
         checkNotNull(reviewer);
 //        checkArgument
         this.reviewer = reviewer;
+    }
+
+    @Override
+    public boolean sameIdentityAs(Review other) {
+        return false;
     }
 }

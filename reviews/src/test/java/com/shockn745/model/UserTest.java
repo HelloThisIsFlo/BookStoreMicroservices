@@ -1,5 +1,6 @@
 package com.shockn745.model;
 
+import com.google.common.testing.EqualsTester;
 import org.junit.Test;
 
 import static org.junit.Assert.fail;
@@ -10,36 +11,34 @@ import static org.junit.Assert.fail;
 public class UserTest {
 
     @Test(expected = NullPointerException.class)
-    public void createWithNameNull_exception() throws Exception {
-        new User(null);
+    public void testValidity() throws Exception {
+        assertValid("florian");
+        assertValid("P");
+
+        assertInvalid(null);
+        assertInvalid("");
     }
 
     @Test
-    public void setNameNull_exception() throws Exception {
-        User user = new User("patrick");
+    public void testEquality() throws Exception {
+        new EqualsTester()
+                .addEqualityGroup(new User("patrick"), new User("patrick"))
+                .addEqualityGroup(new User("florian"), new User("florian"))
+                .testEquals();
 
-        try {
-            user.setUsername(null);
-            fail();
-        } catch (NullPointerException e) {
-            // expected
-        }
     }
 
-    @Test
-    public void setNameEmpty_exception() throws Exception {
-        User user = new User("firstName");
+    private void assertValid(String username) {
+        new User(username);
+    }
 
+    private void assertInvalid(String username) {
         try {
-            user = new User("");
-            fail();
+            new User(username);
+            fail("Should throw exception");
         } catch (IllegalArgumentException e) {
             // expected
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void createWithNameEmpty_exception() throws Exception {
-        User user = new User("");
-    }
 }
