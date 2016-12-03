@@ -3,8 +3,6 @@ package com.shockn745.model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.fail;
-
 /**
  * @author Kempenich Florian
  */
@@ -20,20 +18,25 @@ public class ReviewTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void createWithoutUser_exception() throws Exception {
+    public void userNull() throws Exception {
         new Review(validRating, null);
     }
 
-    @Test
-    public void setUserNull_exception() throws Exception {
+    @Test(expected = NullPointerException.class)
+    public void setUserNull() throws Exception {
         Review review = new Review(validRating, validUser);
-
-        try {
-            review.setReviewer(null);
-            fail();
-        } catch (Exception e) {
-            // expected
-        }
+        review.setReviewer(null);
     }
 
+
+    @Test(expected = NullPointerException.class)
+    public void ratingNull() throws Exception {
+        new Review(null, validUser);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void setRatingNull() throws Exception {
+        Review review = new Review(validRating, validUser);
+        review.setRating(null);
+    }
 }

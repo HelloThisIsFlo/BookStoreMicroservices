@@ -26,10 +26,11 @@ public class Review implements Entity<Review> {
 
     /**
      * Rating must be 0 <= rating <= 100
+     *
      * @param rating must be 0 <= rating <= 100
      */
     public void setRating(Rating rating) {
-        this.rating = rating;
+        this.rating = checkNotNull(rating);
     }
 
     public User getReviewer() {
@@ -37,9 +38,7 @@ public class Review implements Entity<Review> {
     }
 
     public void setReviewer(User reviewer) {
-        checkNotNull(reviewer);
-//        checkArgument
-        this.reviewer = reviewer;
+        this.reviewer = checkNotNull(reviewer);
     }
 
     @Override
