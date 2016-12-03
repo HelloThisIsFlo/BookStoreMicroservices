@@ -10,22 +10,23 @@ import static org.junit.Assert.fail;
  */
 public class ReviewTest {
 
-    User validUser;
+    private User validUser;
+    private Rating validRating;
 
     @Before
     public void setUp() throws Exception {
         validUser = new User("Patrick");
-
+        validRating = new Rating(3);
     }
 
     @Test(expected = NullPointerException.class)
     public void createWithoutUser_exception() throws Exception {
-        new Review(3, null);
+        new Review(validRating, null);
     }
 
     @Test
     public void setUserNull_exception() throws Exception {
-        Review review = new Review(3, validUser);
+        Review review = new Review(validRating, validUser);
 
         try {
             review.setReviewer(null);
@@ -35,13 +36,4 @@ public class ReviewTest {
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void ratingNegative_exception() throws Exception {
-        new Review(-1, validUser);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void ratingOver100_exception() throws Exception {
-        new Review(101, validUser);
-    }
 }

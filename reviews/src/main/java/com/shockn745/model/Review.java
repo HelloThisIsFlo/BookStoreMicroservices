@@ -1,6 +1,5 @@
 package com.shockn745.model;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -11,25 +10,23 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class Review {
 
-    private int rating;
+    private Rating rating;
     private User reviewer;
 
-    public Review(int rating, User reviewer) {
+    public Review(Rating rating, User reviewer) {
         setRating(rating);
         setReviewer(reviewer);
     }
 
     public int getRating() {
-        return rating;
+        return rating.value();
     }
 
     /**
      * Rating must be 0 <= rating <= 100
      * @param rating must be 0 <= rating <= 100
      */
-    public void setRating(int rating) {
-        checkArgument(rating >= 0);
-        checkArgument(rating <= 100);
+    public void setRating(Rating rating) {
         this.rating = rating;
     }
 
