@@ -23,7 +23,7 @@ public interface ReviewRepository {
 
     void delete(Review toDelete);
 
-    List<Review> findByBookid(BookId bookId);
+    List<Review> findByBookId(BookId bookId);
 
     ReviewId generateNextId();
 }

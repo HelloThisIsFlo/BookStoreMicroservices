@@ -25,7 +25,15 @@ public class Review implements Entity<Review> {
         this.reviewer = checkNotNull(reviewer);
     }
 
-    public int getRating() {
+    public ReviewId getId() {
+        return id;
+    }
+
+    public BookId getBookId() {
+        return bookId;
+    }
+
+    public int getRating() {// TODO: 12/3/2016 change to Rating type
         return rating.value();
     }
 
