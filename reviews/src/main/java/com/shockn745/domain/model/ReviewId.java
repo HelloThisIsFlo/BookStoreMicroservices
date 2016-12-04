@@ -4,6 +4,7 @@ import com.shockn745.domain.ddd.ValueObject;
 
 import java.util.Objects;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -22,7 +23,9 @@ public class ReviewId implements ValueObject<ReviewId> {
      */
 
     public ReviewId(String id) {
-        this.id = checkNotNull(id);
+        checkNotNull(id);
+        checkArgument(!id.isEmpty(), "Id cannot be empty");
+        this.id = id;
     }
 
     public String idString() {

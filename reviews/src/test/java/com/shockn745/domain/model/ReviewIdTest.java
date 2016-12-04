@@ -3,6 +3,9 @@ package com.shockn745.domain.model;
 import com.google.common.testing.EqualsTester;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 /**
  * @author Kempenich Florian
  */
@@ -11,6 +14,16 @@ public class ReviewIdTest {
     @Test(expected = NullPointerException.class)
     public void nullId() throws Exception {
         new ReviewId(null);
+    }
+
+    @Test
+    public void emptyId() throws Exception {
+        try {
+            new ReviewId("");
+            fail("Should throw exception");
+        } catch (Exception e) {
+            assertEquals("Id cannot be empty", e.getMessage());
+        }
     }
 
     @Test

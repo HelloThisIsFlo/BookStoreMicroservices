@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -89,7 +90,7 @@ public class ReviewServiceImplTest {
             reviewService.writeNewReview(user, bookId, rating);
             fail("Should throw exception!");
         } catch (ExistingReviewException e) {
-            assertEquals("There already is an existing review for this book", e.getMessage());
+            assertTrue(e.getMessage().startsWith("There already is an existing review for this book"));
             Review existingReview = e.getExistingReview();
 
             assertEquals(username, existingReview.getReviewer().username());
