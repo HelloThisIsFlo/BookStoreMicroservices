@@ -16,7 +16,7 @@ public class User implements ValueObject<User> {
 
     public User(String username) {
         checkNotNull(username);
-        checkArgument(!username.isEmpty());
+        checkArgument(!username.isEmpty(), "Username shouldn't be empty");
         this.username = username;
     }
 

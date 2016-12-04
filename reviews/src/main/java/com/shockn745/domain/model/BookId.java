@@ -16,7 +16,7 @@ public class BookId implements ValueObject<BookId> {
 
     public BookId(String id) {
         checkNotNull(id);
-        checkArgument(!id.isEmpty());
+        checkArgument(!id.isEmpty(), "Book id cannot be empty");
         this.id = id;
     }
 

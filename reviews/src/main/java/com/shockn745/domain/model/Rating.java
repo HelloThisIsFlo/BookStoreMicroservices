@@ -14,8 +14,8 @@ public final class Rating implements ValueObject<Rating> {
     private final int rating;
 
     public Rating(int rating) {
-        checkArgument(rating >= 0);
-        checkArgument(rating <= 100);
+        checkArgument(rating >= 0, "Rating cannot be negative");
+        checkArgument(rating <= 100, "Rating cannot be > 100");
         this.rating = rating;
     }
 

@@ -1,14 +1,24 @@
 package com.shockn745.presentation.model;
 
 import com.google.common.base.MoreObjects;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 /**
  * @author Kempenich Florian
  */
 public class ReviewDTO {
 
+    @NotEmpty
     private String bookId;
+
+    @NotEmpty
     private String username;
+
+    @Min(0)
+    @Max(100)
     private int rating;
 
     public String getBookId() {
