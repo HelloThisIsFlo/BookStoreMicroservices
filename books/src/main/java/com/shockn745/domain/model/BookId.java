@@ -14,6 +14,8 @@ public class BookId implements ValueObject<BookId> {
 
     private String id;
 
+    public static final BookId NOT_ASSIGNED = new BookId("-1");
+
     public BookId(String id) {
         checkNotNull(id);
         checkArgument(!id.isEmpty(), "Id cannot be empty");
