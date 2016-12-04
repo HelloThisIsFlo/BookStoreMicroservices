@@ -25,7 +25,6 @@ public class BookIdTest {
         new BookId(null);
     }
 
-
     @Test
     public void emptyId() throws Exception {
         try {
@@ -34,5 +33,11 @@ public class BookIdTest {
         } catch (IllegalArgumentException e) {
             assertEquals("Id cannot be empty", e.getMessage());
         }
+    }
+
+    @Test
+    public void idString() throws Exception {
+        BookId id = new BookId("id-string");
+        assertEquals("id-string", id.idString());
     }
 }

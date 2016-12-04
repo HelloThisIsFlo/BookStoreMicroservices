@@ -37,4 +37,8 @@ public class BookId implements ValueObject<BookId> {
     public boolean sameValueAs(BookId other) {
         return Objects.equals(id, other.id);
     }
+
+    public String idString() {
+        return id;
+    }
 }
