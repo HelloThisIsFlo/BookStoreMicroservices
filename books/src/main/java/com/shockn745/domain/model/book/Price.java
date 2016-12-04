@@ -1,5 +1,6 @@
 package com.shockn745.domain.model.book;
 
+import com.google.common.base.MoreObjects;
 import com.shockn745.domain.ddd.ValueObject;
 
 import java.util.Objects;
@@ -39,5 +40,12 @@ public class Price implements ValueObject<Price> {
 
     public double amount() {
         return amount;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("amount", amount)
+                .toString();
     }
 }

@@ -1,13 +1,10 @@
 package com.shockn745.domain.model.book;
 
 import com.google.common.testing.EqualsTester;
-import com.shockn745.domain.model.book.Book;
-import com.shockn745.domain.model.book.BookId;
-import com.shockn745.domain.model.book.Characteristics;
-import com.shockn745.domain.model.book.Price;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
@@ -49,6 +46,20 @@ public class BookTest {
     public void setNullId() throws Exception {
         Book book = new Book(validCharact, validPrice);
         book.setId(null);
+    }
+
+    @Test
+    public void testAttributes() throws Exception {
+        Book book = new Book(
+                new Characteristics("Best Book Ever", "Best author", 777),
+                new Price(999)
+        );
+
+        assertEquals(
+                new Characteristics("Best Book Ever", "Best author", 777),
+                book.characteristics()
+        );
+        assertEquals(new Price(999), book.price());
     }
 
     @Test

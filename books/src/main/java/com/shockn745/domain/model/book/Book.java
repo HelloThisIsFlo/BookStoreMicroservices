@@ -29,13 +29,25 @@ public class Book implements Entity<Book> {
         this.price = checkNotNull(price);
     }
 
-    @Override
-    public boolean sameIdentityAs(Book other) {
-        return Objects.equals(id, other.id);
-    }
-
     public void setId(BookId id) {
         this.id = checkNotNull(id);
+    }
+
+    public BookId id() {
+        return id;
+    }
+
+    public Characteristics characteristics() {
+        return characteristics;
+    }
+
+    public Price price() {
+        return price;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
@@ -47,7 +59,7 @@ public class Book implements Entity<Book> {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public boolean sameIdentityAs(Book other) {
+        return Objects.equals(id, other.id);
     }
 }

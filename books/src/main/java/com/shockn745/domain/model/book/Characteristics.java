@@ -1,5 +1,6 @@
 package com.shockn745.domain.model.book;
 
+import com.google.common.base.MoreObjects;
 import com.shockn745.domain.ddd.ValueObject;
 
 import java.util.Objects;
@@ -58,5 +59,14 @@ public class Characteristics implements ValueObject<Characteristics> {
 
     public int numPages() {
         return numPages;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("title", title)
+                .add("author", author)
+                .add("numPages", numPages)
+                .toString();
     }
 }
