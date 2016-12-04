@@ -1,6 +1,10 @@
-package com.shockn745.domain.model;
+package com.shockn745.domain.model.book;
 
 import com.google.common.testing.EqualsTester;
+import com.shockn745.domain.model.book.Book;
+import com.shockn745.domain.model.book.BookId;
+import com.shockn745.domain.model.book.Characteristics;
+import com.shockn745.domain.model.book.Price;
 import org.junit.Before;
 import org.junit.Test;
 
