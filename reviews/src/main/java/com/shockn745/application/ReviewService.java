@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface ReviewService {
 
-    void writeNewReview(User user, BookId bookId, Rating rating);
+    void writeNewReview(User user, BookId bookId, Rating rating) throws ExistingReviewException;
 
     List<Review> getAllReviewsForBook(BookId bookId);
 

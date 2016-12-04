@@ -1,5 +1,6 @@
 package com.shockn745.application.impl;
 
+import com.shockn745.application.ExistingReviewException;
 import com.shockn745.application.ReviewService;
 import com.shockn745.data.ReviewRepository;
 import com.shockn745.domain.model.*;
@@ -20,10 +21,25 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void writeNewReview(User user, BookId bookId, Rating rating) {
+    public void writeNewReview(User user, BookId bookId, Rating rating) throws ExistingReviewException {
+
+        Review existingReview = findExistingReview(bookId, user);
+        if (!existingReview.sameIdentityAs(Review.NULL)) {
+            throw new ExistingReviewException(existingReview);
+        }
+
         ReviewId id = reviewRepository.generateNextId();
         Review review = new Review(id, bookId, rating, user);
         reviewRepository.save(review);
+    }
+
+    private Review findExistingReview(BookId bookId, User user) {
+        return reviewRepository
+                .findByBookId(bookId)
+                .stream()
+                .filter(review -> review.getReviewer().sameValueAs(user))
+                .findFirst()
+                .orElse(Review.NULL);
     }
 
     @Override

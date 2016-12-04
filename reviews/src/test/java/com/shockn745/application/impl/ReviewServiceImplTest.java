@@ -1,5 +1,6 @@
 package com.shockn745.application.impl;
 
+import com.shockn745.application.ExistingReviewException;
 import com.shockn745.application.ReviewService;
 import com.shockn745.data.InMemoryRepository;
 import com.shockn745.data.ReviewRepository;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author Kempenich Florian
@@ -19,9 +21,6 @@ public class ReviewServiceImplTest {
     private ReviewService reviewService;
     private ReviewRepository reviewRepository;
 
-    private BookId bookId;
-    private BookId bookId2;
-
     private ReviewId id1;
     private ReviewId id2;
     private ReviewId id3;
@@ -29,8 +28,6 @@ public class ReviewServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        bookId = new BookId("book-id");
-        bookId2 = new BookId("book-id2");
         id1 = new ReviewId("id1");
         id2 = new ReviewId("id2");
         id3 = new ReviewId("id3");
@@ -44,7 +41,7 @@ public class ReviewServiceImplTest {
 
     @Test
     public void testGetAllReviewsForBooks() throws Exception {
-        List<Review> result = reviewService.getAllReviewsForBook(bookId);
+        List<Review> result = reviewService.getAllReviewsForBook(new BookId("book-id"));
 
         assertEquals(3, result.size());
         assertEquals(id1, result.get(0).getId());
@@ -71,11 +68,41 @@ public class ReviewServiceImplTest {
         assertEquals(44, fromRepo.getRating().value());
     }
 
+    @Test
+    public void writeNewReview_userAlreadyPublishedReviewForSpecificBook_exception() throws Exception {
+        String username = "user22";
+        String bookIdString = "the-book-with-a-review";
+        int ratingValue = 57;
+
+        // Prepare repo with review from user on book
+        saveNewReviewInRepo(new ReviewId("randomId"), new BookId(bookIdString), username, ratingValue);
+
+        // Prepare new review
+        ReviewId id = reviewRepository.generateNextId();
+        User user = new User(username);
+        BookId bookId = new BookId(bookIdString);
+        Rating rating = new Rating(23);
+
+
+        // Should throw exception
+        try {
+            reviewService.writeNewReview(user, bookId, rating);
+            fail("Should throw exception!");
+        } catch (ExistingReviewException e) {
+            assertEquals("There already is an existing review for this book", e.getMessage());
+            Review existingReview = e.getExistingReview();
+
+            assertEquals(username, existingReview.getReviewer().username());
+            assertEquals(bookIdString, existingReview.getBookId().idString());
+            assertEquals(ratingValue, existingReview.getRating().value());
+        }
+    }
+
     private void populateRepoWithFakeReviews() {
-        saveNewReviewInRepo(id1, bookId, "patrick", 34);
-        saveNewReviewInRepo(id2, bookId, "florian", 97);
-        saveNewReviewInRepo(id3, bookId, "mark", 50);
-        saveNewReviewInRepo(id4, bookId2, "greg", 23);
+        saveNewReviewInRepo(id1, new BookId("book-id"), "patrick", 34);
+        saveNewReviewInRepo(id2, new BookId("book-id"), "florian", 97);
+        saveNewReviewInRepo(id3, new BookId("book-id"), "mark", 50);
+        saveNewReviewInRepo(id4, new BookId("book-id2"), "greg", 23);
     }
 
     private void saveNewReviewInRepo(ReviewId id, BookId bookId, String username, int rating) {

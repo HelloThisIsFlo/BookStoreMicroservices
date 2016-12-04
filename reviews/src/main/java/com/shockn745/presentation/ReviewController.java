@@ -1,5 +1,6 @@
 package com.shockn745.presentation;
 
+import com.shockn745.application.ExistingReviewException;
 import com.shockn745.application.ReviewService;
 import com.shockn745.domain.model.BookId;
 import com.shockn745.domain.model.Rating;
@@ -49,13 +50,17 @@ public class ReviewController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public void saveNewReview(@RequestBody @Valid ReviewDTO newReview) {
+    public void saveNewReview(@RequestBody @Valid ReviewDTO newReview) throws ExistingReviewException {
 
         User user = new User(newReview.getUsername());
         BookId bookId = new BookId(newReview.getBookId());
         Rating rating = new Rating(newReview.getRating());
 
-        reviewService.writeNewReview(user, bookId, rating);
+//        try {
+            reviewService.writeNewReview(user, bookId, rating);
+//        } catch (ExistingReviewException e) {
+//            throw new RuntimeException(e);
+//        }
 
         LOG.info("Saved: {}", newReview);
     }

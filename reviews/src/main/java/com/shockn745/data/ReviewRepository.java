@@ -25,5 +25,14 @@ public interface ReviewRepository {
 
     List<Review> findByBookId(BookId bookId);
 
+    /*
+     * Note to self:
+     * Not necessarily needed: Possible to simply use id field, with no constructor argument in Review.
+     * == > Would obtain id after saving.
+     *
+     * Since creation and use are 2 separate actions, an entity is never used before being created . . . and persisted.
+     * So whenever used, it has an id.
+     *
+     */
     ReviewId generateNextId();
 }
