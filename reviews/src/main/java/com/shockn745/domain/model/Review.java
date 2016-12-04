@@ -17,8 +17,7 @@ public class Review implements Entity<Review> {
     public static final Review NULL = new Review(
             new ReviewId("-1"),
             new BookId("-1"),
-            new Rating(0),
-            new User("-1")
+            new User("-1"), new Rating(0)
     );
 
     private ReviewId id;
@@ -27,7 +26,7 @@ public class Review implements Entity<Review> {
     private User reviewer;
 
     // TODO: 12/4/2016 change constructor order
-    public Review(ReviewId id, BookId bookId, Rating rating, User reviewer) {
+    public Review(ReviewId id, BookId bookId, User reviewer, Rating rating) {
         this.id = checkNotNull(id);
         this.bookId = checkNotNull(bookId);
         updateRating(rating);

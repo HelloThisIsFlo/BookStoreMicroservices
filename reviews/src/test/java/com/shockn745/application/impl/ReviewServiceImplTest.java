@@ -106,6 +106,6 @@ public class ReviewServiceImplTest {
     }
 
     private void saveNewReviewInRepo(ReviewId id, BookId bookId, String username, int rating) {
-        reviewRepository.save(new Review(id, bookId, new Rating(rating), new User(username)));
+        reviewRepository.save(new Review(id, bookId, new User(username), new Rating(rating)));
     }
 }

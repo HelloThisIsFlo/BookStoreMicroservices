@@ -29,7 +29,7 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         ReviewId id = reviewRepository.generateNextId();
-        Review review = new Review(id, bookId, rating, user);
+        Review review = new Review(id, bookId, user, rating);
         reviewRepository.save(review);
     }
 

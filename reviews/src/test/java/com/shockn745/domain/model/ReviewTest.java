@@ -43,12 +43,12 @@ public class ReviewTest {
     }
 
     private void assertValid(ReviewId reviewId, BookId bookId, Rating rating, User user) {
-        new Review(reviewId, bookId, rating, user);
+        new Review(reviewId, bookId, user, rating);
     }
 
     private void assertInvalid(ReviewId reviewId, BookId bookId, Rating rating, User user) {
         try {
-            new Review(reviewId, bookId, rating, user);
+            new Review(reviewId, bookId, user, rating);
             fail("Should throw exception");
         } catch (NullPointerException e) {
             // expected
@@ -57,7 +57,7 @@ public class ReviewTest {
 
     @Test(expected = NullPointerException.class)
     public void setRatingNull() throws Exception {
-        Review review = new Review(validId, validBookId, validRating, validUser);
+        Review review = new Review(validId, validBookId, validUser, validRating);
         review.updateRating(null);
     }
 
@@ -73,9 +73,9 @@ public class ReviewTest {
         ReviewId id3 = new ReviewId("third-id");
 
         new EqualsTester()
-                .addEqualityGroup(new Review(id1, new BookId("book-id"), validRating, validUser), new Review(id1, new BookId("book-id"), validRating, validUser))
-                .addEqualityGroup(new Review(id2, new BookId("book-id"), validRating, validUser), new Review(id2, new BookId("book-id"), validRating, validUser))
-                .addEqualityGroup(new Review(id3, new BookId("book-id"), validRating2, validUser2), new Review(id3, new BookId("book-id"), validRating, validUser))
+                .addEqualityGroup(new Review(id1, new BookId("book-id"), validUser, validRating), new Review(id1, new BookId("book-id"), validUser, validRating))
+                .addEqualityGroup(new Review(id2, new BookId("book-id"), validUser, validRating), new Review(id2, new BookId("book-id"), validUser, validRating))
+                .addEqualityGroup(new Review(id3, new BookId("book-id"), validUser2, validRating2), new Review(id3, new BookId("book-id"), validUser, validRating))
                 .testEquals();
     }
 }
