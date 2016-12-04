@@ -1,6 +1,6 @@
 package com.shockn745.application;
 
-import com.shockn745.domain.model.Review;
+import com.shockn745.domain.model.review.Review;
 
 /**
  * @author Kempenich Florian

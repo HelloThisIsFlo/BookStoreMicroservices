@@ -1,9 +1,9 @@
 package com.shockn745.application;
 
-import com.shockn745.domain.model.BookId;
-import com.shockn745.domain.model.Rating;
-import com.shockn745.domain.model.Review;
-import com.shockn745.domain.model.User;
+import com.shockn745.domain.model.review.BookId;
+import com.shockn745.domain.model.review.Rating;
+import com.shockn745.domain.model.review.Review;
+import com.shockn745.domain.model.review.User;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.shockn745.presentation.assembler;
 
-import com.shockn745.domain.model.Review;
+import com.shockn745.domain.model.review.Review;
 import com.shockn745.presentation.model.ReviewDTO;
 import org.springframework.stereotype.Component;
 

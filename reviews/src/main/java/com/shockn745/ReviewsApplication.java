@@ -1,6 +1,6 @@
 package com.shockn745;
 
-import com.shockn745.data.ReviewRepository;
+import com.shockn745.domain.model.review.ReviewRepository;
 import com.shockn745.data.TempFakeRepo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

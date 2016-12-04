@@ -1,4 +1,4 @@
-package com.shockn745.domain.model;
+package com.shockn745.domain.model.review;
 
 import com.shockn745.domain.ddd.ValueObject;
 

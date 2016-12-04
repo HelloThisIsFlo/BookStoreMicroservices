@@ -1,8 +1,9 @@
 package com.shockn745.data;
 
-import com.shockn745.domain.model.BookId;
-import com.shockn745.domain.model.Review;
-import com.shockn745.domain.model.ReviewId;
+import com.shockn745.domain.model.review.BookId;
+import com.shockn745.domain.model.review.Review;
+import com.shockn745.domain.model.review.ReviewId;
+import com.shockn745.domain.model.review.ReviewRepository;
 
 import java.util.ArrayList;
 import java.util.List;

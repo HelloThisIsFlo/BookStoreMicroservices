@@ -1,8 +1,4 @@
-package com.shockn745.data;
-
-import com.shockn745.domain.model.BookId;
-import com.shockn745.domain.model.Review;
-import com.shockn745.domain.model.ReviewId;
+package com.shockn745.domain.model.review;
 
 import java.util.List;
 

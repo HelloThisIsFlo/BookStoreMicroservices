@@ -1,4 +1,4 @@
-package com.shockn745.domain.model;
+package com.shockn745.domain.model.review;
 
 import com.google.common.testing.EqualsTester;
 import org.junit.Test;

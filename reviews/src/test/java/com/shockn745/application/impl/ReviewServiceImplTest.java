@@ -3,8 +3,7 @@ package com.shockn745.application.impl;
 import com.shockn745.application.ExistingReviewException;
 import com.shockn745.application.ReviewService;
 import com.shockn745.data.InMemoryRepository;
-import com.shockn745.data.ReviewRepository;
-import com.shockn745.domain.model.*;
+import com.shockn745.domain.model.review.*;
 import org.junit.Before;
 import org.junit.Test;
 
