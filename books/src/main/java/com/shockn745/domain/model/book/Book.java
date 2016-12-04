@@ -11,6 +11,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class Book implements Entity<Book> {
 
+    public final static Book NULL = new Book(
+            new Characteristics("-1", "-1", 1),
+            new Price(0)
+    );
+
     /*
      * Note to self:
      * Taking the second approach here (as opposed to Review in the reviews web service)

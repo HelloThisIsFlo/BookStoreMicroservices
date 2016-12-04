@@ -1,10 +1,8 @@
-package com.shockn745.application;
+package com.shockn745.application.impl;
 
+import com.shockn745.application.BookService;
 import com.shockn745.data.InMemoryRepository;
-import com.shockn745.domain.model.book.Book;
-import com.shockn745.domain.model.book.BookId;
-import com.shockn745.domain.model.book.Characteristics;
-import com.shockn745.domain.model.book.Price;
+import com.shockn745.domain.model.book.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author Kempenich Florian
@@ -24,7 +23,7 @@ public class BookServiceTest {
     @Before
     public void setUp() throws Exception {
         repository = new InMemoryRepository();
-        service = new BookService(repository);
+        service = new BookServiceImpl(repository);
 
         repository.initWithFakeData(makeFakeDataSet());
     }
@@ -56,5 +55,30 @@ public class BookServiceTest {
         assertEquals("id-2", books.get(1).id().idString());
         assertEquals("id-3", books.get(2).id().idString());
         assertEquals("id-4", books.get(3).id().idString());
+    }
+
+    @Test
+    public void getBookById() throws Exception {
+        BookId id = new BookId("id-3");
+        Book book = service.getBookDetails(id);
+
+        assertEquals("Ubiq", book.characteristics().title());
+        assertEquals("Philip K. Dick", book.characteristics().author());
+        assertEquals(450, book.characteristics().numPages());
+        assertEquals(53.2, book.price().amount(), 0);
+    }
+
+    @Test
+    public void noBookFound_throwException() throws Exception {
+        BookId inexistentId = new BookId("inexistent");
+
+        try {
+            service.getBookDetails(inexistentId);
+            fail("Should throw exception");
+        } catch (BookNotFound e) {
+            assertEquals("Book with not found! Id = inexistent", e.getMessage());
+            assertEquals(inexistentId, e.getIdNotFound());
+        }
+
     }
 }

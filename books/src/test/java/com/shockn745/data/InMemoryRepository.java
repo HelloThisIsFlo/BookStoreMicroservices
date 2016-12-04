@@ -21,7 +21,10 @@ public class InMemoryRepository implements BookRepository {
 
     @Override
     public Book findById(BookId bookId) {
-        throw new RuntimeException("Not yet implemented");
+        return dataStore.stream()
+                .filter(book -> book.id().sameValueAs(bookId))
+                .findFirst()
+                .orElse(Book.NULL);
     }
 
     @Override

@@ -1,26 +1,16 @@
 package com.shockn745.application;
 
 import com.shockn745.domain.model.book.Book;
-import com.shockn745.domain.model.book.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.shockn745.domain.model.book.BookId;
+import com.shockn745.domain.model.book.BookNotFound;
 
 import java.util.List;
 
 /**
  * @author Kempenich Florian
  */
-@Service
-public class BookService {
+public interface BookService {
+    List<Book> getAllBooks();
 
-    private final BookRepository repository;
-
-    @Autowired
-    public BookService(BookRepository repository) {
-        this.repository = repository;
-    }
-
-    public List<Book> getAllBooks() {
-        return repository.findAll();
-    }
+    Book getBookDetails(BookId id) throws BookNotFound;
 }
