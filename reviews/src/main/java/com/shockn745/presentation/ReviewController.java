@@ -7,6 +7,8 @@ import com.shockn745.domain.model.Review;
 import com.shockn745.domain.model.User;
 import com.shockn745.presentation.assembler.ReviewDTOAssembler;
 import com.shockn745.presentation.model.ReviewDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,11 @@ import java.util.stream.Collectors;
 /**
  * @author Kempenich Florian
  */
+
 @RestController
 public class ReviewController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ReviewController.class);
 
     private final ReviewService reviewService;
     private final ReviewDTOAssembler assembler;
@@ -52,13 +57,17 @@ public class ReviewController {
 
         reviewService.writeNewReview(user, bookId, rating);
 
-        System.out.println("saved: " + newReview);
+        LOG.info("Saved: {}", newReview);
     }
 
     @RequestMapping(value = "/find")
     @ResponseStatus(HttpStatus.OK)
-    public List<ReviewDTO> findAll(@RequestParam(value = "bookId", required = true) String bookId) {
+    public List<ReviewDTO> findAll(@RequestParam(value = "bookId") String bookId) {
         // TODO: 12/4/2016 Add validation to prevent empty book id before building 'BookId'
+        if (bookId.isEmpty()) {
+            LOG.error("findAll(): BookId cannot be empty");
+            return null;
+        }
 
         BookId id = new BookId(bookId);
 
