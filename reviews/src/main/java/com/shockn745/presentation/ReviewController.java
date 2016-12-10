@@ -37,16 +37,10 @@ public class ReviewController {
         this.assembler = assembler;
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("/info")
     @ResponseStatus(HttpStatus.OK)
-    public ReviewDTO test(){
-        ReviewDTO review = new ReviewDTO();
-
-        review.setBookId("book-id");
-        review.setUsername("shock");
-        review.setRating(45);
-
-        return review;
+    public String info(){
+       return "Ok";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)

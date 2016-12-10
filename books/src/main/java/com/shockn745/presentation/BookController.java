@@ -31,6 +31,12 @@ public class BookController {
         this.dtoAssembler = dtoAssembler;
     }
 
+    @RequestMapping("/info")
+    @ResponseStatus(HttpStatus.OK)
+    public String info() {
+        return "Ok";
+    }
+
     @RequestMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     // TODO: 12/10/2016 Implement with pagination

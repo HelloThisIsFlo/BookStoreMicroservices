@@ -1,2 +1,17 @@
+# Spring properties
+spring:
+  application:
+     name: reviews
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
 server:
-  port: 8989
+  port: 0
