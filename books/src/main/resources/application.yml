@@ -1,2 +1,6 @@
 server:
   port: 8990
+
+spring:
+  profiles:
+    active: prod

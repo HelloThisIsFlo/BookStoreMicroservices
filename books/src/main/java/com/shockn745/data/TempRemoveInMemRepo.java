@@ -1,6 +1,8 @@
 package com.shockn745.data;
 
 import com.shockn745.domain.model.book.*;
+import com.shockn745.spring.Dev;
+import com.shockn745.spring.IntegrationTests;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,17 +12,19 @@ import java.util.List;
 /**
  * @author Kempenich Florian
  */
+@Dev
 @Repository
+@IntegrationTests
 public class TempRemoveInMemRepo implements BookRepository {
 
     private List<Book> dataStore;
 
     public TempRemoveInMemRepo() {
-        initWithFakeData();
+        initWithFakeData(makeFakeDataSet());
     }
 
-    private void initWithFakeData() {
-        dataStore = new ArrayList<>(makeFakeDataSet());
+    public void initWithFakeData(List<Book> fakeDataset) {
+        dataStore = new ArrayList<>(fakeDataset);
     }
 
     @Override

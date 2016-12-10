@@ -1,5 +1,6 @@
 package com.shockn745.domain.model.book;
 
+import com.google.common.base.MoreObjects;
 import com.shockn745.domain.ddd.Entity;
 
 import java.util.Objects;
@@ -66,5 +67,14 @@ public class Book implements Entity<Book> {
     @Override
     public boolean sameIdentityAs(Book other) {
         return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("characteristics", characteristics)
+                .add("price", price)
+                .toString();
     }
 }

@@ -1,5 +1,6 @@
 package com.shockn745.domain.model.book;
 
+import com.google.common.base.MoreObjects;
 import com.shockn745.domain.ddd.ValueObject;
 
 import java.util.Objects;
@@ -42,5 +43,12 @@ public class BookId implements ValueObject<BookId> {
 
     public String idString() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .toString();
     }
 }
