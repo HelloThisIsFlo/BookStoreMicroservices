@@ -14,16 +14,12 @@ import org.springframework.stereotype.Component;
 public class JpaMapper {
 
     public BookJpaEntity map(Book book) {
-        BookJpaEntity jpaEntity = new BookJpaEntity(
+        return new BookJpaEntity(
                 book.characteristics().title(),
                 book.characteristics().author(),
                 book.characteristics().numPages(),
                 book.price().amount()
         );
-
-        jpaEntity.setId((long) -1);
-
-        return jpaEntity;
     }
 
     public Book map(BookJpaEntity bookJpaEntity) {
