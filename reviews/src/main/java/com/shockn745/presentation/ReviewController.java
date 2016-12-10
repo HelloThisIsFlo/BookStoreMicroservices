@@ -56,11 +56,7 @@ public class ReviewController {
         BookId bookId = new BookId(newReview.getBookId());
         Rating rating = new Rating(newReview.getRating());
 
-//        try {
-            reviewService.writeNewReview(user, bookId, rating);
-//        } catch (ExistingReviewException e) {
-//            throw new RuntimeException(e);
-//        }
+        reviewService.writeNewReview(user, bookId, rating);
 
         LOG.info("Saved: {}", newReview);
     }

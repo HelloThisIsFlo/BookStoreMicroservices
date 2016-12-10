@@ -8,7 +8,7 @@ public class BookNotFound extends Exception {
     private final BookId idNotFound;
 
     public BookNotFound(BookId bookId) {
-        super("Book with not found! Id = " + bookId.idString());
+        super("Tried to get book, but id not found! --> id=" + bookId.idString());
         idNotFound = bookId;
     }
 

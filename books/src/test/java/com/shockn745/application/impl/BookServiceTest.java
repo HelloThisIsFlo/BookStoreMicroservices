@@ -77,7 +77,7 @@ public class BookServiceTest {
             service.getBookDetails(inexistentId);
             fail("Should throw exception");
         } catch (BookNotFound e) {
-            assertEquals("Book with not found! Id = inexistent", e.getMessage());
+            assertEquals("Tried to get book, but id not found! --> id=inexistent", e.getMessage());
             assertEquals(inexistentId, e.getIdNotFound());
         }
     }
