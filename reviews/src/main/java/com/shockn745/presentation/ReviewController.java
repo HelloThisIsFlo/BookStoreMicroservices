@@ -49,7 +49,7 @@ public class ReviewController {
         return review;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     public void saveNewReview(@RequestBody @Valid ReviewDTO newReview) throws ExistingReviewException {
 
         User user = new User(newReview.getUsername());

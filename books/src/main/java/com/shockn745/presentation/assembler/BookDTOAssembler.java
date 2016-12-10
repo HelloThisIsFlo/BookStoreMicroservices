@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class BookDTOAssembler {
 
     public BookDTO toDTO(Book book) {
-        return new BookDTO(
-                book.id().idString(),
-                book.characteristics().title(),
-                book.characteristics().author(),
-                book.characteristics().numPages(),
-                book.price().amount()
-        );
+        BookDTO dto = new BookDTO();
+        dto.setBookId(book.id().idString());
+        dto.setTitle(book.characteristics().title());
+        dto.setAuthor(book.characteristics().author());
+        dto.setNumPages(book.characteristics().numPages());
+        dto.setPrice(book.price().amount());
+        return dto;
     }
 }

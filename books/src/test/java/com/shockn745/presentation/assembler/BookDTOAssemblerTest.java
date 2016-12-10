@@ -37,11 +37,11 @@ public class BookDTOAssemblerTest {
 
         BookDTO dto = assembler.toDTO(book);
 
-        assertEquals(id, dto.bookId);
-        assertEquals(title, dto.title);
-        assertEquals(author, dto.author);
-        assertEquals(numberOfPages, dto.numPages);
-        assertEquals(price, dto.price, 0);
+        assertEquals(id, dto.getBookId());
+        assertEquals(title, dto.getTitle());
+        assertEquals(author, dto.getAuthor());
+        assertEquals(numberOfPages, dto.getNumPages());
+        assertEquals(price, dto.getPrice(), 0);
 
     }
 }
