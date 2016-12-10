@@ -3,6 +3,7 @@ package com.shockn745.data.hibernate;
 import com.shockn745.domain.model.book.Book;
 import com.shockn745.domain.model.book.BookId;
 import com.shockn745.domain.model.book.BookRepository;
+import com.shockn745.spring.IntegrationTests;
 import com.shockn745.spring.Prod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author Kempenich Florian
  */
 @Prod
+@IntegrationTests
 @Repository
 public class HibernateBookRepository implements BookRepository {
 

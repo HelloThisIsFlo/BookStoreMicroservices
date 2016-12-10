@@ -1,5 +1,6 @@
 package com.shockn745.application.impl;
 
+import com.shockn745.TestUtils;
 import com.shockn745.application.BookService;
 import com.shockn745.data.InMemoryRepository;
 import com.shockn745.domain.model.book.*;
@@ -20,31 +21,24 @@ public class BookServiceTest {
 
     private InMemoryRepository repository;
     private BookService service;
+    private TestUtils testUtils;
 
     @Before
     public void setUp() throws Exception {
         repository = new InMemoryRepository();
         service = new BookServiceImpl(repository);
+        testUtils = new TestUtils();
 
         repository.initWithFakeData(makeFakeDataSet());
     }
 
     private List<Book> makeFakeDataSet() {
         return Arrays.asList(
-                makeBook("id-1", "title", "author", 321, 543.12),
-                makeBook("id-2", "Harry Potter", "author", 321, 124),
-                makeBook("id-3", "Ubiq", "Philip K. Dick", 450, 53.2),
-                makeBook("id-4", "Lost thing", "Famous writer", 1342, 789)
+                testUtils.makeBook("id-1", "title", "author", 321, 543.12),
+                testUtils.makeBook("id-2", "Harry Potter", "author", 321, 124),
+                testUtils.makeBook("id-3", "Ubiq", "Philip K. Dick", 450, 53.2),
+                testUtils.makeBook("id-4", "Lost thing", "Famous writer", 1342, 789)
         );
-    }
-
-    private Book makeBook(String id, String title, String author, int numPage, double price) {
-        Book book = new Book(
-                new Characteristics(title, author, numPage),
-                new Price(price)
-        );
-        book.setId(new BookId(id));
-        return book;
     }
 
     @Test

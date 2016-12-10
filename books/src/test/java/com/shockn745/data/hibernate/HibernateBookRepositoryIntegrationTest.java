@@ -1,8 +1,7 @@
 package com.shockn745.data.hibernate;
 
-import com.shockn745.data.TempRemoveInMemRepo;
+import com.shockn745.TestUtils;
 import com.shockn745.domain.model.book.*;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -27,11 +25,9 @@ public class HibernateBookRepositoryIntegrationTest {
 
     @Autowired
     private BookRepository bookRepository;
-
-    @Before
-    public void setUp() throws Exception {
-        ((TempRemoveInMemRepo) bookRepository).initWithFakeData(new ArrayList<>()); // TODO: 12/10/2016 remove
-    }
+    
+    @Autowired
+    private TestUtils testUtils;
 
     @Test
     public void saveAndFind() throws Exception {
@@ -41,7 +37,7 @@ public class HibernateBookRepositoryIntegrationTest {
         int numPage = 253;
         double price = 99.97;
 
-        Book toSave = makeBook(id, title, author, numPage, price);
+        Book toSave = testUtils.makeBook(id, title, author, numPage, price);
 
         assertEquals(id, toSave.id().idString());
         bookRepository.save(toSave);
@@ -58,20 +54,12 @@ public class HibernateBookRepositoryIntegrationTest {
         assertEquals(price, fromRepo.price().amount(), 0);
     }
 
-    private Book makeBook(String id, String title, String author, int numPage, double price) {
-        Book book = new Book(
-                new Characteristics(title, author, numPage),
-                new Price(price)
-        );
-        book.setId(new BookId(id));
-        return book;
-    }
 
     @Test
     public void saveMultiple_findAll() throws Exception {
-        Book book1 = makeBook("id-1", "title", "author", 39, 53.12);
-        Book book2 = makeBook("id-2", "Learn portuguese", "Alexandra", 321, 124);
-        Book book3 = makeBook("id-3", "Third book", "Philip", 665, 53.2);
+        Book book1 = testUtils.makeBook("id-1", "title", "author", 39, 53.12);
+        Book book2 = testUtils.makeBook("id-2", "Learn portuguese", "Alexandra", 321, 124);
+        Book book3 = testUtils.makeBook("id-3", "Third book", "Philip", 665, 53.2);
 
         bookRepository.save(book1);
         bookRepository.save(book2);
