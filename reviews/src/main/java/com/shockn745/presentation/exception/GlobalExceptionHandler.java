@@ -27,4 +27,12 @@ public class GlobalExceptionHandler {
         return new ErrorInfo(request.getRequestURL().toString(), ex);
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public ErrorInfo handleExistingReview(HttpServletRequest request, IllegalArgumentException ex) {
+        LOG.error("IllegalArgument exception:", ex);
+        return new ErrorInfo(request.getRequestURL().toString(), ex);
+    }
+
 }

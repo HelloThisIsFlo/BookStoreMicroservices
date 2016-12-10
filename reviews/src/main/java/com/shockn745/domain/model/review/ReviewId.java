@@ -16,12 +16,6 @@ public class ReviewId implements ValueObject<ReviewId> {
 
     private String id;
 
-    /*
-     * Note to self:
-     * We could have represented the reviewId with a combination of User / BookId
-     * Todo to try, when everything else is done :)
-     */
-
     public ReviewId(String id) {
         checkNotNull(id);
         checkArgument(!id.isEmpty(), "Id cannot be empty");

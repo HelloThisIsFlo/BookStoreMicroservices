@@ -25,7 +25,6 @@ public class Review implements Entity<Review> {
     private Rating rating;
     private User reviewer;
 
-    // TODO: 12/4/2016 change constructor order
     public Review(ReviewId id, BookId bookId, User reviewer, Rating rating) {
         this.id = checkNotNull(id);
         this.bookId = checkNotNull(bookId);

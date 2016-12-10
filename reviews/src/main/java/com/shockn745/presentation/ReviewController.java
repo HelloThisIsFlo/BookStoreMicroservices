@@ -64,12 +64,6 @@ public class ReviewController {
     @RequestMapping(value = "/find")
     @ResponseStatus(HttpStatus.OK)
     public List<ReviewDTO> findAll(@RequestParam(value = "bookId") String bookId) {
-        // TODO: 12/4/2016 Add validation to prevent empty book id before building 'BookId'
-        if (bookId.isEmpty()) {
-            LOG.error("findAll(): BookId cannot be empty");
-            return null;
-        }
-
         BookId id = new BookId(bookId);
 
         List<Review> reviews = reviewService.getAllReviewsForBook(id);
