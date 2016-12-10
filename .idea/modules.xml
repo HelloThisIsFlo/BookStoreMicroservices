@@ -8,9 +8,13 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/books.iml" filepath="$PROJECT_DIR$/.idea/modules/books.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/books_main.iml" filepath="$PROJECT_DIR$/.idea/modules/books_main.iml" group="books" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/books_test.iml" filepath="$PROJECT_DIR$/.idea/modules/books_test.iml" group="books" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka_main.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka_main.iml" group="eureka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka_test.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka_test.iml" group="eureka" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reviews.iml" filepath="$PROJECT_DIR$/.idea/modules/reviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reviews_main.iml" filepath="$PROJECT_DIR$/.idea/modules/reviews_main.iml" group="reviews" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reviews_test.iml" filepath="$PROJECT_DIR$/.idea/modules/reviews_test.iml" group="reviews" />
+      <module fileurl="file://$PROJECT_DIR$/zuul/zuul.iml" filepath="$PROJECT_DIR$/zuul/zuul.iml" />
     </modules>
   </component>
 </project>
