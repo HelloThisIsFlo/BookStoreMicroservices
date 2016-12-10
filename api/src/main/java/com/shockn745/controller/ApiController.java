@@ -27,9 +27,9 @@ public class ApiController {
         return "Ok";
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookWithAvgReview> test() {
+    public List<BookWithAvgReview> getAllBooks() {
         return bookService.getAllBooks();
     }
 

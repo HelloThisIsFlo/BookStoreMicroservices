@@ -3,6 +3,8 @@ package com.shockn745.application.impl;
 import com.shockn745.application.ExistingReviewException;
 import com.shockn745.application.ReviewService;
 import com.shockn745.domain.model.review.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.List;
  */
 @Service
 public class ReviewServiceImpl implements ReviewService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ReviewServiceImpl.class);
+
 
     private ReviewRepository reviewRepository;
 
@@ -43,6 +48,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> getAllReviewsForBook(BookId bookId) {
+        LOG.info("Getting reviews for book -> {}", bookId.idString());
         return reviewRepository.findByBookId(bookId);
     }
 }

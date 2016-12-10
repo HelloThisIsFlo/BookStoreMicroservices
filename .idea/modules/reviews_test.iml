@@ -15,8 +15,8 @@
     <orderEntry type="library" name="Gradle: com.google.guava:guava:20.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-test:1.4.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava-testlib:20.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.cloud:spring-cloud-starter:1.1.6.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.springframework.boot:spring-boot-devtools:1.4.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.cloud:spring-cloud-starter:1.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.cloud:spring-cloud-netflix-core:1.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.cloud:spring-cloud-netflix-eureka-client:1.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.netflix.eureka:eureka-client:1.4.12" level="project" />
