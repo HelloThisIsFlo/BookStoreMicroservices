@@ -5,10 +5,12 @@ import com.shockn745.domain.model.book.Book;
 import com.shockn745.domain.model.book.BookId;
 import com.shockn745.domain.model.book.Characteristics;
 import com.shockn745.domain.model.book.Price;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Kempenich Florian
  */
+@Component
 public class JpaMapper {
 
     public BookJpaEntity map(Book book) {
@@ -19,7 +21,7 @@ public class JpaMapper {
                 book.price().amount()
         );
 
-        jpaEntity.setId(parseId(book));
+        jpaEntity.setId((long) -1);
 
         return jpaEntity;
     }

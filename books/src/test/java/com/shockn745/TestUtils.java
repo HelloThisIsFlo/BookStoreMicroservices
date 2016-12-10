@@ -22,4 +22,14 @@ public class TestUtils {
         book.setId(new BookId(id));
         return book;
     }
+
+    public Book makeDefaultBook() {
+        return makeBook(
+                "123",
+                "Default title",
+                "Default author",
+                456,
+                678.89
+        );
+    }
 }

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * @author Kempenich Florian
@@ -34,14 +35,23 @@ public class JpaMapperTest {
 
         BookJpaEntity jpaEntity = jpaMapper.map(book);
 
-
-        Long expectedId = Long.parseLong(bookId);
-        assertEquals(expectedId, jpaEntity.getId());
-
         assertEquals(title, jpaEntity.getTitle());
         assertEquals(author, jpaEntity.getAuthor());
         assertEquals(numPages, jpaEntity.getNumPages());
         assertEquals(price, jpaEntity.getPrice(), 0);
+    }
+
+    @Test
+    public void shouldEraseId_whenMappingToEntity() throws Exception {
+        Book book = testUtils.makeDefaultBook();
+
+        assertNotEquals(-1, parseId(book));
+        BookJpaEntity jpaEntity = jpaMapper.map(book);
+        assertEquals(new Long(-1), jpaEntity.getId());
+    }
+
+    private long parseId(Book book) {
+        return Long.parseLong(book.id().idString());
     }
 
     @Test
