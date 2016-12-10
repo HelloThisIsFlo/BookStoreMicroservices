@@ -14,7 +14,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reviews.iml" filepath="$PROJECT_DIR$/.idea/modules/reviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reviews_main.iml" filepath="$PROJECT_DIR$/.idea/modules/reviews_main.iml" group="reviews" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reviews_test.iml" filepath="$PROJECT_DIR$/.idea/modules/reviews_test.iml" group="reviews" />
-      <module fileurl="file://$PROJECT_DIR$/zuul/zuul.iml" filepath="$PROJECT_DIR$/zuul/zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zuul.iml" filepath="$PROJECT_DIR$/.idea/modules/zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zuul_main.iml" filepath="$PROJECT_DIR$/.idea/modules/zuul_main.iml" group="zuul" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zuul_test.iml" filepath="$PROJECT_DIR$/.idea/modules/zuul_test.iml" group="zuul" />
     </modules>
   </component>
 </project>
