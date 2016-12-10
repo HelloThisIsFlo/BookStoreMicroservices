@@ -6,6 +6,7 @@ import com.shockn745.domain.model.book.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,6 +80,24 @@ public class BookServiceTest {
             assertEquals("Book with not found! Id = inexistent", e.getMessage());
             assertEquals(inexistentId, e.getIdNotFound());
         }
-
     }
+
+    @Test
+    public void createNewBook() throws Exception {
+        // Empty repository
+        repository.initWithFakeData(new ArrayList<>());
+
+        Characteristics characteristics = new Characteristics("New Book title", "new book author", 987);
+        Price price = new Price(456.55);
+
+        // Create new book
+        BookId id = service.createNewBookEntry(characteristics, price);
+
+        // Verify access to new book
+        Book result = service.getBookDetails(id);
+        assertEquals(id, result.id());
+        assertEquals(characteristics, result.characteristics());
+        assertEquals(price, result.price());
+    }
+
 }

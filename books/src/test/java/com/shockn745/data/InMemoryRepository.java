@@ -16,7 +16,14 @@ public class InMemoryRepository implements BookRepository {
 
     @Override
     public void save(Book book) {
+        BookId id = generateId();
+        dataStore.add(book);
+        book.setId(id);
+    }
 
+    private BookId generateId() {
+        String id = Integer.toString(dataStore.size());
+        return new BookId(id);
     }
 
     @Override

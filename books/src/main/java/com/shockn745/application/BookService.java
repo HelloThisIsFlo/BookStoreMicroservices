@@ -1,8 +1,6 @@
 package com.shockn745.application;
 
-import com.shockn745.domain.model.book.Book;
-import com.shockn745.domain.model.book.BookId;
-import com.shockn745.domain.model.book.BookNotFound;
+import com.shockn745.domain.model.book.*;
 
 import java.util.List;
 
@@ -13,4 +11,6 @@ public interface BookService {
     List<Book> getAllBooks();
 
     Book getBookDetails(BookId id) throws BookNotFound;
+
+    BookId createNewBookEntry(Characteristics characteristics, Price price);
 }

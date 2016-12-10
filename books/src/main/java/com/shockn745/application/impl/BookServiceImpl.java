@@ -1,10 +1,7 @@
 package com.shockn745.application.impl;
 
 import com.shockn745.application.BookService;
-import com.shockn745.domain.model.book.Book;
-import com.shockn745.domain.model.book.BookId;
-import com.shockn745.domain.model.book.BookNotFound;
-import com.shockn745.domain.model.book.BookRepository;
+import com.shockn745.domain.model.book.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +34,14 @@ public class BookServiceImpl implements BookService {
         }
 
         return book;
+    }
+
+    @Override
+    public BookId createNewBookEntry(Characteristics characteristics, Price price) {
+
+        Book book = new Book(characteristics, price);
+        repository.save(book);
+        return book.id();
+
     }
 }
