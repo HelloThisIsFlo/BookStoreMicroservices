@@ -4,3 +4,12 @@ server:
 spring:
   profiles:
     active: prod
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/BookStoreBookService
+    username: Dev
+    password: dev
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
