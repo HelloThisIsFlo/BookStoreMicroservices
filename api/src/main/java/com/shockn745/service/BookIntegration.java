@@ -1,6 +1,6 @@
 package com.shockn745.service;
 
-import com.shockn745.model.Book;
+import com.shockn745.model.BookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -27,10 +27,10 @@ public class BookIntegration {
         this.loadBalancerClient = loadBalancerClient;
     }
 
-    public List<Book> getAll() {
+    public List<BookDto> getAll() {
         String url = getBookServiceUrl("/all");
 
-        Book[] books = restTemplate.getForObject(url, Book[].class);
+        BookDto[] books = restTemplate.getForObject(url, BookDto[].class);
 
 
         return Arrays.asList(books);
@@ -42,9 +42,9 @@ public class BookIntegration {
         return uri.toString() + pathAndParameters;
     }
 
-    public Book getBook(String bookId) {
+    public BookDto getBook(String bookId) {
         String url = getBookServiceUrl("/bookDetails?bookId=" + bookId);
-        return restTemplate.getForObject(url, Book.class);
+        return restTemplate.getForObject(url, BookDto.class);
     }
 
 }

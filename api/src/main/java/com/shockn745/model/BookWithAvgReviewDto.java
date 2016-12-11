@@ -3,16 +3,16 @@ package com.shockn745.model;
 /**
  * @author Kempenich Florian
  */
-public class BookWithAvgReview {
+public class BookWithAvgReviewDto {
 
-    public Book book;
+    public BookDto book;
     public double avgReview;
 
-    public BookWithAvgReview(Book book, double avgReview) {
+    public BookWithAvgReviewDto(BookDto book, double avgReview) {
         this.book = book;
         this.avgReview = avgReview;
     }
 
-    public BookWithAvgReview() {
+    public BookWithAvgReviewDto() {
     }
 }

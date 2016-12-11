@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 /**
  * @author Kempenich Florian
  */
-public class Book {
+public class BookDto {
 
     private String bookId;
     private String title;

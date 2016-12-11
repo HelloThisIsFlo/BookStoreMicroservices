@@ -1,6 +1,6 @@
 package com.shockn745.service;
 
-import com.shockn745.model.Review;
+import com.shockn745.model.ReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -27,12 +27,12 @@ public class ReviewIntegration {
         this.loadBalancerClient = loadBalancerClient;
     }
 
-    public List<Review> getAllForBook(String bookId) {
+    public List<ReviewDto> getAllForBook(String bookId) {
         ServiceInstance instance = loadBalancerClient.choose(REVIEW_SERVICE);
         URI uri = instance.getUri();
         String url = uri.toString() + "/find?bookId=" + bookId;
 
-        Review[] reviews = restTemplate.getForObject(url, Review[].class);
+        ReviewDto[] reviews = restTemplate.getForObject(url, ReviewDto[].class);
 
 
         return Arrays.asList(reviews);

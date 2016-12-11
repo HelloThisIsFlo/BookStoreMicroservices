@@ -1,7 +1,7 @@
 package com.shockn745.controller;
 
-import com.shockn745.model.BookWithAllReviews;
-import com.shockn745.model.BookWithAvgReview;
+import com.shockn745.model.BookWithAllReviewsDto;
+import com.shockn745.model.BookWithAvgReviewDto;
 import com.shockn745.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,13 +29,13 @@ public class ApiController {
 
     @RequestMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookWithAvgReview> getAllBooks() {
+    public List<BookWithAvgReviewDto> getAllBooks() {
         return bookService.getAllBooks();
     }
 
     @RequestMapping("/bookDetails")
     @ResponseStatus(HttpStatus.OK)
-    public BookWithAllReviews getBookDetails(@RequestParam("bookId") String bookId) {
+    public BookWithAllReviewsDto getBookDetails(@RequestParam("bookId") String bookId) {
         return bookService.getBookDetails(bookId);
     }
 
